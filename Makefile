@@ -1,7 +1,8 @@
 CC = gcc
 #For older gcc, use -O3 or -O2 instead of -Ofast
 # CFLAGS = -lm -pthread -Ofast -march=native -funroll-loops -Wno-unused-result
-CFLAGS = -lm -pthread -Ofast -march=native -funroll-loops -Wall -Wextra -Wpedantic
+# CFLAGS = -lm -pthread -Ofast -march=native -funroll-loops -Wall -Wextra -Wpedantic
+CFLAGS = -lm -pthread -Ofast -funroll-loops -Wall -Wextra -Wpedantic -mcpu=apple-a14
 BUILDDIR := build
 SRCDIR := src
 
