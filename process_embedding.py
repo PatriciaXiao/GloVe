@@ -36,6 +36,7 @@ data_out = {
 }
 
 embedding_weights = np.zeros((1, 200))
+idx = 0
 
 with open("political_vectors.txt") as f:
     vec = f.read().split("\n")
@@ -44,9 +45,18 @@ for v in vec[:-1]:
     v_info = v.split(" ")
     w = str(v_info[0]).replace('\x01', ' ')
     if len(w) == 0: continue
+    idx += 1
     e = np.array([float(i) for i in v_info[1:] if len(i)]).reshape(1,200)
     embedding_weights = np.concatenate((embedding_weights, e), axis=0)
-    print(embedding_weights.shape)
-    exit(0)
+    data_out["idx"].append(idx)
+    data_out["word"].append(w)
 
-# np.savez_compressed(file_name, context=embedding_weights)
+assert embedding_weights.shape[0] == len(data_out["idx"]) and len(data_out["idx"]) == len(data_out["word"])
+
+out_df = pd.DataFrame(data=data_out)
+out_df.to_csv("vocab.csv", sep="\t", index=None)
+print("final version of vocabulary saved")
+
+np.savez_compressed("embeddings.npz", context=embedding_weights)
+print("final version of embeddings saved")
+
