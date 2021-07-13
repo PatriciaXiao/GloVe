@@ -41,7 +41,10 @@ idx = 0
 with open("political_vectors.txt") as f:
     vec = f.read().split("\n")
 
+print("processing data")
+
 for v in vec[:-1]:
+    print('{}/{}'.format(idx+1, len(vec[:-1])), end='\r')
     v_info = v.split(" ")
     w = str(v_info[0]).replace('\x01', ' ')
     if len(w) == 0: continue
@@ -50,6 +53,7 @@ for v in vec[:-1]:
     embedding_weights = np.concatenate((embedding_weights, e), axis=0)
     data_out["idx"].append(idx)
     data_out["word"].append(w)
+print('{}/{}'.format(idx+1, len(vec[:-1])))
 
 assert embedding_weights.shape[0] == len(data_out["idx"]) and len(data_out["idx"]) == len(data_out["word"])
 
