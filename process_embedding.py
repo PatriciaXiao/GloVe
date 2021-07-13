@@ -27,6 +27,9 @@ print(len(vec))
 print(vocab_size)
 print(len(in_df))
 
+print(set([l.split(" ")[0] for l in vec[:-1]]) - set(data["word"]))
+exit(0)
+
 for v in vec[:-1]:
     v_info = v.split(" ")
     w = str(v_info[0])
