@@ -12,6 +12,8 @@ data = {
 out_df = pd.DataFrame(data=data)
 out_df.to_csv("vocab.csv", sep="\t", index=None)
 
+print("vocabulary saved")
+
 vocab_size = len(out_df)
 vocab_dim = 200
 
@@ -24,3 +26,5 @@ print(vec[0])
 print(vec[-1])
 print(len(vec))
 print(vocab_size)
+
+# np.savez_compressed(file_name, context=embedding_weights)
