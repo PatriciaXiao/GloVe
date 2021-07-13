@@ -22,9 +22,16 @@ word2idx = dict(zip(data["word"], data["idx"]))
 with open("political_vectors.txt") as f:
     vec = f.read().split("\n")
 
-print(vec[0])
-print(vec[-1])
+
 print(len(vec))
 print(vocab_size)
+print(len(in_df))
+
+for v in vec[:-1]:
+    v_info = v.split(" ")
+    w = str(v_info[0])
+    e = np.array([float(i) for i in v_info[1:] if len(i)])
+    print(e)
+    exit(0)
 
 # np.savez_compressed(file_name, context=embedding_weights)
