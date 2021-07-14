@@ -41,3 +41,4 @@ build/*
 embeddings.npz
 political_vectors.txt
 political
+*.bin
