@@ -37,3 +37,5 @@ build/*
 
 # OS X stuff
 ._*
+.DS_Store
+embeddings.npz
